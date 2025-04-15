@@ -1,18 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/Pritam12F/url-shortener/handlers"
 )
 
-func rootHandler(w http.ResponseWriter, req *http.Request){
-	
-
-	fmt.Fprintf(w, "hello\n")
-}
-
 func main(){
-	http.HandleFunc("/", rootHandler)
+	
+	http.HandleFunc("/shorten", handlers.ShortenerHandler)
+	http.HandleFunc("/r/{id}", handlers.RedirectHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
